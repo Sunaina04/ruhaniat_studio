@@ -1,0 +1,68 @@
+# Ruhaniat Studio — Website
+
+*Tradition in Every Thread. Style in Every Stitch.*
+
+The website for Ruhaniat Studio, a Punjabi ethnic wear design and custom-stitching studio. It is built with Next.js 15 (App Router), TypeScript and Tailwind CSS v4. Every page is generated as static HTML. Customer enquiries go through WhatsApp.
+
+## Getting started
+
+```bash
+npm install
+npm run dev                  # http://localhost:3000
+npm run build                # static site in ./out
+```
+
+Don't run `npm run build` while `npm run dev` is running. Both use the `.next` folder, and the dev server will start throwing "Cannot find module" errors. If that happens, stop it and run `rm -rf .next && npm run dev`.
+
+## Going live (GitHub Pages)
+
+Every push to `main` deploys the site with `.github/workflows/deploy.yml`. The live address is **https://sunaina04.github.io/ruhaniat_studio/**. You can see each deploy's progress in the repository's **Actions** tab.
+
+The site is exported as static files (`output: "export"` in `next.config.ts`). The workflow sets the `/ruhaniat_studio` base path. Your WhatsApp number and email are set in `src/config/site.ts`.
+
+## Everyday editing
+
+| What you want to change | Where |
+| --- | --- |
+| WhatsApp number, email, Instagram | `src/config/site.ts` |
+| Default WhatsApp greeting, tagline | `src/config/site.ts` |
+| Collections (names, descriptions, order) | `src/data/categories.ts` |
+| Designs (add, remove, rename, reference numbers) | `src/data/designs.ts` |
+| Modern Bibiyaan De Designs heritage details | `src/data/heritage.ts` |
+| Customer reviews (real ones only, with permission) | `src/data/reviews.ts` |
+| Colours and fonts | `src/app/globals.css` (`@theme`) and `src/app/layout.tsx` |
+
+### Adding your own photographs
+
+Until a design has a photo, the site draws a sample illustration of it. To use a real photograph:
+
+1. Put the image in `public/images/designs/`, for example `rs-001.jpg`. Use a 3:4 portrait shape, about 1200×1600px.
+2. In `src/data/designs.ts`, set `image: "/images/designs/rs-001.jpg"` on that design.
+
+Collection cover images work the same way: put them in `public/images/categories/` and set `image` in `src/data/categories.ts`.
+
+### Adding a design
+
+Copy an entry in `src/data/designs.ts`, give it a new unique `ref` (for example `RS-037`) and choose its `category`. Its page at `/designs/rs-037`, its card on the collection page and its WhatsApp message are all created automatically.
+
+## WhatsApp & enquiries
+
+- **Design buttons** open WhatsApp with a message like: *"Hello Ruhaniat Studio, I liked design RS-001 (Mulmul Morning Suit) and would like to know more about custom stitching."*
+- **The floating button** and the general buttons use the default greeting from `site.ts`.
+- **The enquiry form** (`/contact`) checks the name and phone number, then opens WhatsApp with every field filled in. A WhatsApp link cannot carry photos, so the customer is asked to attach their reference images in the chat.
+- **Optional:** set `NEXT_PUBLIC_ENQUIRY_ENDPOINT` to a form service such as Formspree. The form will then also send its fields and the uploaded images to that address.
+- **Design-page links:** "Use Enquiry Form" opens `/contact?design=RS-001` with the design already filled in.
+
+## Pages
+
+- `/`: home page
+- `/collections`: all collections
+- `/collections/[slug]`: one page per collection (9 in total)
+- `/collections/modern-bibiyaan-de-designs`: also has the heritage inspiration section
+- `/designs/[ref]`: one page per design
+- `/custom-stitching`, `/about`, `/contact`
+- `/sitemap.xml`, `/robots.txt`: generated automatically
+
+## Content rules followed
+
+The site contains no invented reviews (the reviews section stays a "share your review" message until real ones are added), orders, prices or physical-boutique claims. Bridal wear is one collection among nine. There is no shop or payment system.

@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+/* Fonts come from next/font variables set on <body>, so they are inlined. */
+@theme inline {
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-jost), system-ui, sans-serif;
+  --font-gurmukhi: var(--font-noto-gurmukhi), serif;
+}
+
+/* ------------------------------------------------------------------
+   Ruhaniat Studio — design tokens
+   Ivory · warm beige · muted blush · deep burgundy · antique gold
+------------------------------------------------------------------- */
+@theme static {
+  --color-ivory: #fbf7f0;
+  --color-ivory-deep: #f4ece0;
+  --color-beige: #eadcc6;
+  --color-sand: #d8c3a3;
+  --color-blush: #e7cbc2;
+  --color-blush-soft: #f4e5df;
+  --color-burgundy: #6e1e2f;
+  --color-burgundy-deep: #4a1320;
+  --color-gold: #a9854a;
+  --color-gold-soft: #d3bb8c;
+  --color-ink: #2b1b1e;
+  --color-muted: #6f5d58;
+  --color-line: #e2d5c2;
+  --color-whatsapp: #1f8f4e;
+
+  --tracking-luxe: 0.28em;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-fade-up: fade-up 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-jost), system-ui, sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-cormorant), Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-blush);
+    color: var(--color-burgundy-deep);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    font-family: var(--font-jost), system-ui, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: var(--tracking-luxe);
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+
+  .container-luxe {
+    width: 100%;
+    max-width: 82rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-luxe {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .field {
+    width: 100%;
+    border: 1px solid var(--color-line);
+    background: #fffdf9;
+    padding: 0.85rem 1rem;
+    font-size: 0.95rem;
+    color: var(--color-ink);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgb(169 133 74 / 0.15);
+  }
+  .field::placeholder {
+    color: #a8968c;
+  }
+
+  .paper-texture {
+    background-image:
+      radial-gradient(rgb(169 133 74 / 0.07) 1px, transparent 1px),
+      radial-gradient(rgb(110 30 47 / 0.04) 1px, transparent 1px);
+    background-size: 22px 22px, 31px 31px;
+    background-position: 0 0, 11px 7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
