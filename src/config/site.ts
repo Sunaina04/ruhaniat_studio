@@ -24,7 +24,7 @@ export const siteConfig = {
 
   /** Optional — leave empty to hide. */
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "sruhaniat13@gmail.com",
-  instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL ?? "",
+  instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL ?? "https://www.instagram.com/ruhaniat_studio/",
 
   /**
    * Optional form endpoint (e.g. Formspree, Getform, or your own API).
