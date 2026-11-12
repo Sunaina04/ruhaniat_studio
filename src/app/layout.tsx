@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Jost, Noto_Serif_Gurmukhi } from "next/font/google";
+import localFont from "next/font/local";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
@@ -7,27 +7,33 @@ import { RevealObserver } from "@/components/motion";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+// Fonts are stored in the project (src/assets/fonts/web, SIL Open Font License),
+// so builds never depend on downloading from Google Fonts.
+const cormorant = localFont({
   variable: "--font-cormorant",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
+  src: [
+    { path: "../assets/fonts/web/CormorantGaramond.woff2", weight: "400 600", style: "normal" },
+    { path: "../assets/fonts/web/CormorantGaramond-Italic.woff2", weight: "400 600", style: "italic" },
+  ],
   display: "swap",
+  fallback: ["Georgia", "serif"],
 });
 
-const jost = Jost({
+const jost = localFont({
   variable: "--font-jost",
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  src: "../assets/fonts/web/Jost.woff2",
+  weight: "300 500",
   display: "swap",
+  fallback: ["system-ui", "sans-serif"],
 });
 
-const gurmukhi = Noto_Serif_Gurmukhi({
+const gurmukhi = localFont({
   variable: "--font-noto-gurmukhi",
-  subsets: ["gurmukhi"],
+  src: "../assets/fonts/web/NotoSerifGurmukhi.woff2",
+  weight: "400 500",
   preload: false,
-  weight: ["400", "500"],
   display: "swap",
+  fallback: ["serif"],
 });
 
 export const metadata: Metadata = {
