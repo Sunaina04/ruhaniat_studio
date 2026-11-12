@@ -20,7 +20,7 @@ export default function CollectionsPage() {
         intro="Every design here is a starting point. Choose one as it is, ask us to change it, or mix ideas from different collections — we stitch it to your measurements."
       />
       <section className="bg-ivory">
-        <div className="container-luxe grid gap-x-6 gap-y-14 py-16 sm:grid-cols-2 md:py-24 lg:grid-cols-3">
+        <div className="container-luxe grid grid-cols-2 gap-x-3 gap-y-8 py-16 sm:gap-x-6 sm:gap-y-14 md:py-24 lg:grid-cols-3">
           {categories.map((c, i) => (
             <CategoryCard key={c.slug} category={c} index={i} />
           ))}

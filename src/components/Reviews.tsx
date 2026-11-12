@@ -65,14 +65,15 @@ export function Reviews() {
     return (
       <section className="bg-ivory-deep">
         <div className="container-luxe py-20 text-center md:py-24">
-          <p className="eyebrow mb-4">Customer Reviews</p>
+          <p className="eyebrow mb-4">Customer Stories</p>
           <h2 className="mx-auto max-w-2xl text-4xl text-burgundy-deep md:text-5xl">
-            Our first stories are <em className="text-burgundy">being stitched</em>
+            Your Experience, <em className="text-burgundy">Our Inspiration</em>
           </h2>
           <Ornament className="mx-auto mt-5 text-gold" />
           <p className="mx-auto mt-6 max-w-xl leading-relaxed text-muted">
-            Ruhaniat Studio is just beginning, and we would rather wait for real words from real customers than fill this
-            space. Had an outfit stitched with us? We would love to hear from you.
+            Ruhaniat Studio is just beginning, and we look forward to creating personalised outfits for our first
+            customers. Rather than fill this space with borrowed words, we&apos;ll share real feedback here as it arrives.
+            Had an outfit stitched with us? We would love to hear from you.
           </p>
           <div className="mt-9 flex justify-center">{shareButton}</div>
         </div>

@@ -30,6 +30,8 @@ The site is exported as static files (`output: "export"` in `next.config.ts`). T
 | Designs (add, remove, rename, reference numbers) | `src/data/designs.ts` |
 | Modern Bibiyaan De Designs heritage details | `src/data/heritage.ts` |
 | Customer reviews (real ones only, with permission) | `src/data/reviews.ts` |
+| Journal articles (add, edit, publish new) | `src/data/journal.ts` |
+| Instagram link (shows the "Follow Our Style Journey" button) | `instagram` in `src/config/site.ts` |
 | Colours and fonts | `src/app/globals.css` (`@theme`) and `src/app/layout.tsx` |
 
 ### Adding your own photographs
@@ -40,6 +42,14 @@ Until a design has a photo, the site draws a sample illustration of it. To use a
 2. In `src/data/designs.ts`, set `image: "/images/designs/rs-001.jpg"` on that design.
 
 Collection cover images work the same way: put them in `public/images/categories/` and set `image` in `src/data/categories.ts`.
+
+### Writing a Journal article
+
+Copy an article in `src/data/journal.ts` and give it a new `slug`, which becomes its URL (`/journal/your-slug`). Pick a `category` and a `cover` illustration (a `silhouette` and `tone`), then write the body as blocks: `p` (paragraph), `h2` (heading), `list`, `tip` or `design` (shows one of your designs by its reference). The site works out the reading time, adds the article to the Journal page, links related designs and includes it in the sitemap.
+
+### Images
+
+All design and Journal images are sketch illustrations drawn in code, so nothing depends on outside photos. To use your own photograph for a design, put it in `public/images/designs/` and set `image` on that design in `designs.ts`. It fades in as it loads, and the "Ruhaniat Design Concept" label disappears.
 
 ### Adding a design
 

@@ -7,6 +7,8 @@ import { WhatsAppCta } from "@/components/sections";
 import { ButtonLink, Ornament, PageHero, SectionHeading, WhatsAppIcon } from "@/components/ui";
 import { categories, getCategory } from "@/data/categories";
 import { designsByCategory } from "@/data/designs";
+import { articlesForCollection } from "@/data/journal";
+import { RelatedReading } from "@/components/related";
 import { heritageElements } from "@/data/heritage";
 import { categoryEnquiryMessage, whatsappLink } from "@/lib/whatsapp";
 
@@ -91,6 +93,8 @@ export default async function CategoryPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      <RelatedReading items={articlesForCollection(category.slug)} />
 
       <section className="border-t border-line bg-ivory-deep">
         <div className="container-luxe py-14">

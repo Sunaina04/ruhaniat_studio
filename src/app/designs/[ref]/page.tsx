@@ -3,9 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DesignCard } from "@/components/DesignCard";
 import { DesignVisual } from "@/components/DesignVisual";
-import { ButtonLink, Ornament, WhatsAppIcon } from "@/components/ui";
+import { ButtonLink, ConceptLabel, Ornament, WhatsAppIcon } from "@/components/ui";
 import { categoryName } from "@/data/categories";
 import { designs, designsByCategory, getDesign } from "@/data/designs";
+import { articlesForDesign } from "@/data/journal";
+import { RelatedReading } from "@/components/related";
 import { designEnquiryMessage, whatsappLink } from "@/lib/whatsapp";
 
 type Props = { params: Promise<{ ref: string }> };
@@ -59,6 +61,7 @@ export default async function DesignPage({ params }: Props) {
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 priority
               />
+              {!design.image && <ConceptLabel />}
             </div>
 
             <div className="lg:py-6">
@@ -103,6 +106,8 @@ export default async function DesignPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      <RelatedReading items={articlesForDesign(design.ref, 3)} />
 
       {related.length > 0 && (
         <section className="border-t border-line bg-ivory-deep">

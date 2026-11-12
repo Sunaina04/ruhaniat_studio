@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { GarmentArt } from "@/components/GarmentArt";
+import { Reviews } from "@/components/Reviews";
 import { WhatsAppCta } from "@/components/sections";
 import { ButtonLink, Ornament, PageHero } from "@/components/ui";
 import { siteConfig } from "@/config/site";
@@ -101,6 +102,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <Reviews />
 
       <WhatsAppCta title="Let's create something for you" />
     </>

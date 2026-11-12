@@ -11,7 +11,7 @@ const variants: Record<Variant, string> = {
 };
 
 export function buttonClass(variant: Variant = "primary", extra = "") {
-  return `inline-flex items-center justify-center gap-2.5 px-6 py-3.5 text-center leading-snug text-[0.72rem] font-medium uppercase tracking-[0.2em] transition-all duration-300 ${variants[variant]} ${extra}`;
+  return `btn-luxe inline-flex items-center justify-center gap-2.5 px-6 py-3.5 text-center leading-snug text-[0.72rem] font-medium uppercase tracking-[0.2em] transition-all duration-300 ${variants[variant]} ${extra}`;
 }
 
 export function ButtonLink({
@@ -76,6 +76,16 @@ export function SectionHeading({
       <Ornament className={`mt-5 text-gold ${centered ? "mx-auto" : ""}`} />
       {intro && <div className="mt-5 text-[1.02rem] leading-relaxed text-muted">{intro}</div>}
     </div>
+  );
+}
+
+export function ConceptLabel({ className = "left-3 top-3" }: { className?: string }) {
+  return (
+    <span
+      className={`pointer-events-none absolute z-[1] bg-burgundy/90 px-2 py-1 text-[0.58rem] font-medium uppercase tracking-[0.18em] text-ivory ${className}`}
+    >
+      Ruhaniat Design Concept
+    </span>
   );
 }
 

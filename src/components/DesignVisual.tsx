@@ -1,6 +1,5 @@
-import Image from "next/image";
 import { GarmentArt } from "./GarmentArt";
-import { assetPath } from "@/lib/assets";
+import { FadeImage } from "./motion";
 import type { Silhouette, Tone } from "@/data/types";
 
 /**
@@ -25,16 +24,7 @@ export function DesignVisual({
   className?: string;
 }) {
   if (image) {
-    return (
-      <Image
-        src={assetPath(image)}
-        alt={alt}
-        fill
-        sizes={sizes}
-        priority={priority}
-        className={`object-cover ${className}`}
-      />
-    );
+    return <FadeImage src={image} alt={alt} sizes={sizes} priority={priority} className={className} />;
   }
   return <GarmentArt silhouette={silhouette} tone={tone} className={`absolute inset-0 h-full w-full ${className}`} />;
 }

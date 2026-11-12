@@ -37,6 +37,9 @@ export function Footer() {
           <p className="eyebrow mb-5 !text-gold-soft">Studio</p>
           <ul className="space-y-2.5 text-sm">
             <li><Link href="/custom-stitching" className="hover:text-gold-soft">Custom Stitching</Link></li>
+            <li><Link href="/inspiration" className="hover:text-gold-soft">Design Inspiration</Link></li>
+            <li><Link href="/lookbook" className="hover:text-gold-soft">Lookbook</Link></li>
+            <li><Link href="/journal" className="hover:text-gold-soft">Ruhaniat Journal</Link></li>
             <li><Link href="/about" className="hover:text-gold-soft">About Us</Link></li>
             <li><Link href="/contact" className="hover:text-gold-soft">Contact &amp; Enquiry</Link></li>
           </ul>

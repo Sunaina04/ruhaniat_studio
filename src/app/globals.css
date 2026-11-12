@@ -30,6 +30,31 @@
   --tracking-luxe: 0.28em;
   --animate-marquee: marquee 40s linear infinite;
   --animate-fade-up: fade-up 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-page-in: page-in 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  --animate-word-in: word-in 1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --ease-luxe: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  @keyframes page-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes word-in {
+    from {
+      opacity: 0;
+      transform: translateY(105%);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 
   @keyframes marquee {
     from {
@@ -142,7 +167,105 @@
   }
 }
 
+/* ------------------------------------------------------------------
+   Motion — scroll reveals, image loading, buttons
+------------------------------------------------------------------- */
+@layer components {
+  /* Elements with data-reveal fade and rise in when they enter the viewport.
+     RevealObserver (client) adds data-shown. Without JS, see <noscript> in layout. */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 0.9s var(--ease-luxe),
+      transform 0.9s var(--ease-luxe);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  [data-reveal="fade"] {
+    transform: none;
+  }
+  [data-reveal][data-shown] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Hero headline: each word slides up from behind a mask. */
+  .word-mask {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    padding-bottom: 0.08em;
+    margin-bottom: -0.08em;
+  }
+  .word-mask > span {
+    display: inline-block;
+    animation: var(--animate-word-in);
+  }
+
+  /* Images fade in once loaded, over a soft shimmer. */
+  .img-shell {
+    background: linear-gradient(110deg, var(--color-beige) 30%, var(--color-ivory-deep) 50%, var(--color-beige) 70%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s linear infinite;
+  }
+  .img-shell[data-loaded] {
+    animation: none;
+    background: none;
+  }
+  .img-fade {
+    opacity: 0;
+    transform: scale(1.015);
+    transition:
+      opacity 0.8s var(--ease-luxe),
+      transform 1.2s var(--ease-luxe);
+  }
+  .img-fade[data-loaded] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Buttons: a slow sheen passes over on hover. */
+  .btn-luxe {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .btn-luxe::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(105deg, transparent 35%, rgb(255 255 255 / 0.22) 50%, transparent 65%);
+    transform: translateX(-120%);
+    transition: transform 0.9s var(--ease-luxe);
+  }
+  .btn-luxe:hover::after {
+    transform: translateX(120%);
+  }
+  .btn-luxe:active {
+    transform: translateY(1px);
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
   *,
   *::before,
   *::after {

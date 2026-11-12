@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Jost, Noto_Serif_Gurmukhi } from "next/font/google"
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
+import { RevealObserver } from "@/components/motion";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
@@ -32,21 +33,23 @@ const gurmukhi = Noto_Serif_Gurmukhi({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — Punjabi Ethnic Wear & Custom Stitching`,
+    default: `${siteConfig.name} — Punjabi Suit Designs & Custom Stitching`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   keywords: [
-    "Punjabi suits",
-    "custom stitching",
-    "salwar kameez",
-    "Patiala suit",
-    "gharara suit",
-    "sharara suit",
+    "Punjabi suit designs",
+    "custom Punjabi suit stitching",
+    "daily wear Punjabi suits",
+    "stylish salwar suits",
+    "traditional Punjabi salwar designs",
+    "Patiala salwar suit",
+    "gharara stitching",
+    "sharara stitching",
     "palazzo suit",
-    "traditional Punjabi suits",
+    "custom ethnic wear",
+    "phulkari dupatta",
     "old Punjabi suit designs",
-    "bridal Punjabi suit",
     "Ruhaniat Studio",
   ],
   openGraph: {
@@ -71,11 +74,24 @@ const jsonLd = {
   url: siteConfig.url,
   slogan: siteConfig.tagline,
   description: siteConfig.description,
+  email: siteConfig.email || undefined,
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: `+${siteConfig.whatsappNumber}`,
+    contactType: "customer service",
+    availableLanguage: ["English", "Punjabi", "Hindi"],
+  },
+  sameAs: siteConfig.instagram ? [siteConfig.instagram] : undefined,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <noscript>
+          <style>{"[data-reveal]{opacity:1!important;transform:none!important}.img-fade{opacity:1!important}"}</style>
+        </noscript>
+      </head>
       <body className={`${cormorant.variable} ${jost.variable} ${gurmukhi.variable} antialiased`}>
         <a
           href="#main"
@@ -87,6 +103,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <main id="main">{children}</main>
         <Footer />
         <WhatsAppFloat />
+        <RevealObserver />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
     </html>

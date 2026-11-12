@@ -8,7 +8,7 @@ export const siteConfig = {
   tagline: "Tradition in Every Thread. Style in Every Stitch.",
   headline: "From Timeless Punjabi Classics to Today's Trends.",
   description:
-    "Ruhaniat Studio is a Punjabi and Indian ethnic wear design and custom-stitching studio — from simple daily wear suits to traditional, stylish and heritage-inspired outfits, stitched to your measurements.",
+    "Punjabi suit designs and custom stitching by Ruhaniat Studio — daily wear suits, stylish salwar suits, traditional Punjabi salwar designs, gharara, sharara and palazzo suits, stitched to your measurements. Enquire on WhatsApp.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://ruhaniatstudio.com",
 
   /**
@@ -36,7 +36,9 @@ export const siteConfig = {
 
 export const mainNav = [
   { label: "Collections", href: "/collections" },
-  { label: "Modern Bibiyaan De Designs", href: "/collections/modern-bibiyaan-de-designs" },
+  { label: "Inspiration", href: "/inspiration" },
+  { label: "Lookbook", href: "/lookbook" },
+  { label: "Journal", href: "/journal" },
   { label: "Custom Stitching", href: "/custom-stitching" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
