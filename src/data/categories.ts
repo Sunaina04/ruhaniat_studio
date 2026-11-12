@@ -78,7 +78,7 @@ export const categories: Category[] = [
     description:
       "The suits our mothers, naniyan and dadiyan wore — old-style salwars, classic necklines, traditional cuffs, hand embroidery and vintage cuts. We bring these heritage styles back, stitched with the same respect for tradition.",
     seoDescription:
-      "Modern Bibiyaan De Designs — traditional Punjabi suits inspired by the styles of earlier generations: old-style salwars, classic necklines, vintage embroidery. By Ruhaniat Studio.",
+      "Modern Bibiyaan De Designs — old Punjabi suit designs from earlier generations: full salwars, classic necklines and vintage embroidery, stitched today.",
     silhouette: "salwar",
     tone: "heritage",
   },

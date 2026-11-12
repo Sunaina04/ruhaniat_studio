@@ -10,6 +10,7 @@ import { designsByCategory } from "@/data/designs";
 import { articlesForCollection } from "@/data/journal";
 import { RelatedReading } from "@/components/related";
 import { heritageElements } from "@/data/heritage";
+import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 import { categoryEnquiryMessage, whatsappLink } from "@/lib/whatsapp";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -22,12 +23,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const category = getCategory(slug);
   if (!category) return {};
-  return {
+  return pageMetadata({
     title: category.name,
     description: category.seoDescription,
-    alternates: { canonical: `/collections/${category.slug}` },
-    openGraph: { title: `${category.name} | Ruhaniat Studio`, description: category.seoDescription },
-  };
+    path: `/collections/${category.slug}/`,
+    image: `/collections/${category.slug}/og.png`,
+  });
 }
 
 export default async function CategoryPage({ params }: Props) {
@@ -63,9 +64,9 @@ export default async function CategoryPage({ params }: Props) {
           <div className="mb-10 flex flex-col justify-between gap-4 border-b border-line pb-6 sm:flex-row sm:items-end">
             <div>
               <p className="eyebrow">{isHeritage ? "Heritage Designs" : "Designs"}</p>
-              <p className="mt-2 font-serif text-2xl text-burgundy-deep">
+              <h2 className="mt-2 font-serif text-2xl font-normal leading-normal tracking-normal text-burgundy-deep">
                 {items.length} design {items.length === 1 ? "idea" : "ideas"}
-              </p>
+              </h2>
             </div>
             <p className="max-w-md text-sm text-muted">
               Quote the reference number (e.g. {items[0]?.ref ?? "RS-001"}) when you enquire, and tell us anything you
@@ -115,6 +116,10 @@ export default async function CategoryPage({ params }: Props) {
       </section>
 
       <WhatsAppCta message={categoryEnquiryMessage(category.name)} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", ...breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Collections", path: "/collections/" }, { name: category.name }]) }) }}
+      />
     </>
   );
 }

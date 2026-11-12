@@ -74,18 +74,22 @@ function kameezFor(s: Silhouette) {
   }
 }
 
-export function GarmentArt({
-  silhouette,
-  tone,
-  className = "",
-  showDupatta = true,
-}: {
+type ArtProps = {
   silhouette: Silhouette;
   tone: Tone;
   className?: string;
   showDupatta?: boolean;
-}) {
+  /** Describes the illustration for screen readers and search engines. Omit when decorative. */
+  label?: string;
+};
+
+export function GarmentArt(props: ArtProps) {
   const uid = useId().replace(/:/g, "");
+  return <GarmentArtSvg {...props} uid={uid} />;
+}
+
+/** Hook-free drawing, so it can also be rendered outside React (e.g. sharing images). */
+export function GarmentArtSvg({ silhouette, tone, className = "", showDupatta = true, label, uid }: ArtProps & { uid: string }) {
   const p = palettes[tone];
   const k = kameezFor(silhouette);
   const bottom = bottomPath(silhouette);
@@ -95,9 +99,9 @@ export function GarmentArt({
       viewBox="0 0 300 400"
       preserveAspectRatio="xMidYMid slice"
       className={className}
-      role="img"
-      aria-label="Sample illustration — replace with design photograph"
+      {...(label ? { role: "img", "aria-label": label } : { "aria-hidden": true })}
     >
+      {label && <title>{label}</title>}
       <defs>
         <linearGradient id={`bg${uid}`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor={p.bg[0]} />

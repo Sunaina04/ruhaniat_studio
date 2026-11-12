@@ -10,6 +10,7 @@ import { categoryName } from "@/data/categories";
 import { getDesign } from "@/data/designs";
 import { articles, formatDate, getArticle, journalCategories, journalThemes, readingTime, type Block } from "@/data/journal";
 import type { Design } from "@/data/types";
+import { breadcrumbJsonLd, clamp, pageMetadata } from "@/lib/seo";
 import { designEnquiryMessage, whatsappLink } from "@/lib/whatsapp";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -22,12 +23,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const a = getArticle(slug);
   if (!a) return {};
-  return {
-    title: a.title,
-    description: a.excerpt,
-    alternates: { canonical: `/journal/${a.slug}/` },
-    openGraph: { type: "article", title: a.title, description: a.excerpt, publishedTime: a.publishedOn },
-  };
+  return pageMetadata({
+    title: a.seoTitle ?? a.title,
+    description: clamp(a.excerpt),
+    path: `/journal/${a.slug}/`,
+    image: `/journal/${a.slug}/og.png`,
+    type: "article",
+    publishedTime: a.publishedOn,
+  });
 }
 
 /** One of our designs shown as an illustrated figure inside the article. */
@@ -131,17 +134,19 @@ export default async function ArticlePage({ params }: Props) {
         headline: a.title,
         description: a.excerpt,
         datePublished: a.publishedOn,
-        author: { "@type": "Organization", name: siteConfig.name },
-        publisher: { "@type": "Organization", name: siteConfig.name },
+        dateModified: a.publishedOn,
+        image: [`${siteConfig.url}/journal/${a.slug}/og.png`],
+        articleSection: journalCategories[a.category].name,
+        inLanguage: "en",
+        author: { "@type": "Organization", name: siteConfig.name, url: `${siteConfig.url}/` },
+        publisher: { "@id": `${siteConfig.url}/#organization` },
         mainEntityOfPage: `${siteConfig.url}/journal/${a.slug}/`,
       },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Journal", item: `${siteConfig.url}/journal/` },
-          { "@type": "ListItem", position: 2, name: a.title },
-        ],
-      },
+      breadcrumbJsonLd([
+        { name: "Home", path: "/" },
+        { name: "Journal", path: "/journal/" },
+        { name: a.title },
+      ]),
     ],
   };
 

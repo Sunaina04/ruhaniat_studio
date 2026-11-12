@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { JournalExplorer } from "@/components/journal";
 import { WhatsAppCta } from "@/components/sections";
 import { PageHero } from "@/components/ui";
 
-export const metadata: Metadata = {
-  title: "Ruhaniat Journal — Punjabi Suit Styling, Heritage & Fabric Guides",
+export const metadata: Metadata = pageMetadata({
+  title: "Ruhaniat Journal — Styling & Heritage",
   description:
-    "Stories, styles and inspiration from Ruhaniat Studio: Punjabi suit designs, salwar styles, phulkari heritage, neckline and dupatta ideas, and fabric and stitching guides.",
-  alternates: { canonical: "/journal/" },
-};
+    "Punjabi suit styling ideas, salwar and phulkari heritage, design inspiration and fabric guides from the Ruhaniat Studio journal.",
+  path: "/journal/",
+});
 
 export default function JournalPage() {
   return (

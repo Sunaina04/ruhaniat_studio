@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { SHIPPING_MESSAGE, WhatsAppCta } from "@/components/sections";
 import { ButtonLink, GlobeIcon, Ornament, PageHero, WhatsAppIcon } from "@/components/ui";
 import { whatsappLink } from "@/lib/whatsapp";
 
-export const metadata: Metadata = {
-  title: "Shipping & Delivery — Worldwide Shipping for Custom Punjabi Suits",
+export const metadata: Metadata = pageMetadata({
+  title: "Shipping & Delivery — Worldwide",
   description:
-    "Ruhaniat Studio accepts online custom stitching orders from India and around the world. Shipping charges, delivery timelines and availability are confirmed for your destination on WhatsApp.",
-  alternates: { canonical: "/shipping/" },
-};
+    "Ruhaniat Studio ships custom-stitched Punjabi suits worldwide. Shipping charges, delivery times and availability are confirmed for your destination.",
+  path: "/shipping/",
+});
 
 const orderSteps = [
   {

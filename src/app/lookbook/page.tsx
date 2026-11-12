@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Lookbook } from "@/components/Lookbook";
 import { WhatsAppCta } from "@/components/sections";
 import { PageHero } from "@/components/ui";
 
-export const metadata: Metadata = {
-  title: "Lookbook — Punjabi Suit Colours, Silhouettes & Heritage Styles",
+export const metadata: Metadata = pageMetadata({
+  title: "Lookbook — Suit Colours & Silhouettes",
   description:
-    "Browse the Ruhaniat Studio lookbook: Punjabi salwar suits, gharara, sharara and palazzo silhouettes, heritage styles and colour combinations. Save favourites and share on WhatsApp.",
-  alternates: { canonical: "/lookbook/" },
-};
+    "Browse Punjabi suit colours, necklines and silhouettes in the Ruhaniat lookbook. Save your favourite designs and share them with family on WhatsApp.",
+  path: "/lookbook/",
+});
 
 export default function LookbookPage() {
   return (

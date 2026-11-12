@@ -26,5 +26,5 @@ export function DesignVisual({
   if (image) {
     return <FadeImage src={image} alt={alt} sizes={sizes} priority={priority} className={className} />;
   }
-  return <GarmentArt silhouette={silhouette} tone={tone} className={`absolute inset-0 h-full w-full ${className}`} />;
+  return <GarmentArt silhouette={silhouette} tone={tone} label={alt} className={`absolute inset-0 h-full w-full ${className}`} />;
 }

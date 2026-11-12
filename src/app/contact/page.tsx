@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { Suspense } from "react";
 import { EnquiryForm } from "@/components/EnquiryForm";
@@ -6,12 +7,12 @@ import { ButtonLink, Ornament, PageHero, WhatsAppIcon } from "@/components/ui";
 import { siteConfig } from "@/config/site";
 import { whatsappLink } from "@/lib/whatsapp";
 
-export const metadata: Metadata = {
-  title: "Contact & Enquiry",
+export const metadata: Metadata = pageMetadata({
+  title: "Contact & Order Enquiry",
   description:
-    "Send Ruhaniat Studio an enquiry for custom-stitched Punjabi suits. Share your design reference, occasion, budget and reference photos, or chat with us on WhatsApp.",
-  alternates: { canonical: "/contact" },
-};
+    "Ask about a design or place a custom stitching order from India or abroad. Share your design, occasion, budget and reference photos, or chat on WhatsApp.",
+  path: "/contact/",
+});
 
 export default function ContactPage() {
   return (

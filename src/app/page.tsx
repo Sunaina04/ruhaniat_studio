@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { CategoryCard } from "@/components/CategoryCard";
 import { DesignCard } from "@/components/DesignCard";
@@ -11,7 +12,10 @@ import { categories } from "@/data/categories";
 import { designsByCategory } from "@/data/designs";
 import { heritageElements } from "@/data/heritage";
 import { siteConfig } from "@/config/site";
+import { pageMetadata } from "@/lib/seo";
 import { whatsappLink } from "@/lib/whatsapp";
+
+export const metadata: Metadata = pageMetadata({ description: siteConfig.description, path: "/" });
 
 /** Splits a line into words that slide up one after another. */
 function RevealWords({ text, start = 0, className = "" }: { text: string; start?: number; className?: string }) {

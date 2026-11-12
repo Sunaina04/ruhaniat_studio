@@ -8,6 +8,7 @@ import { categoryName } from "@/data/categories";
 import { designs, designsByCategory, getDesign } from "@/data/designs";
 import { articlesForDesign } from "@/data/journal";
 import { RelatedReading } from "@/components/related";
+import { breadcrumbJsonLd, clamp, pageMetadata } from "@/lib/seo";
 import { designEnquiryMessage, whatsappLink } from "@/lib/whatsapp";
 
 type Props = { params: Promise<{ ref: string }> };
@@ -20,13 +21,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { ref } = await params;
   const design = getDesign(ref);
   if (!design) return {};
-  const title = `${design.name} (${design.ref})`;
-  return {
-    title,
-    description: `${design.description} ${categoryName(design.category)} design by Ruhaniat Studio — custom stitched to your measurements.`,
-    alternates: { canonical: `/designs/${design.ref.toLowerCase()}` },
-    openGraph: { title: `${title} | Ruhaniat Studio`, images: design.image ? [design.image] : undefined },
-  };
+  return pageMetadata({
+    title: `${design.name} (${design.ref})`,
+    description: clamp(`${design.description} A ${categoryName(design.category)} design, custom stitched to your measurements.`),
+    path: `/designs/${design.ref.toLowerCase()}/`,
+    image: `/designs/${design.ref.toLowerCase()}/og.png`,
+  });
 }
 
 export default async function DesignPage({ params }: Props) {
@@ -122,6 +122,10 @@ export default async function DesignPage({ params }: Props) {
           </div>
         </section>
       )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", ...breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Collections", path: "/collections/" }, { name: catName, path: `/collections/${design.category}/` }, { name: `${design.name} (${design.ref})` }]) }) }}
+      />
     </>
   );
 }

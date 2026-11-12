@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { InspirationExplorer } from "@/components/InspirationExplorer";
 import { StyleQuiz } from "@/components/StyleQuiz";
 import { WhatsAppCta } from "@/components/sections";
 import { PageHero } from "@/components/ui";
 
-export const metadata: Metadata = {
-  title: "Punjabi Suit Design Ideas — Get Inspired",
+export const metadata: Metadata = pageMetadata({
+  title: "Punjabi Suit Design Ideas",
   description:
-    "Not sure what to stitch? Browse Punjabi suit design ideas — daily wear, stylish suits, traditional salwar, gharara, sharara and palazzo — and enquire about custom stitching on WhatsApp.",
-  alternates: { canonical: "/inspiration/" },
-};
+    "Not sure what to stitch? Browse Punjabi suit design ideas by style and find your look with our quick style quiz. Enquire about custom stitching on WhatsApp.",
+  path: "/inspiration/",
+});
 
 export default function InspirationPage() {
   return (
@@ -25,6 +26,7 @@ export default function InspirationPage() {
       />
       <section className="bg-ivory">
         <div className="container-luxe py-14 md:py-20">
+          <h2 className="sr-only">Punjabi suit design ideas</h2>
           <InspirationExplorer />
         </div>
       </section>

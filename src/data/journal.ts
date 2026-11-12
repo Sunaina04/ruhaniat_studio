@@ -48,6 +48,8 @@ export type Block =
 export interface Article {
   slug: string;
   title: string;
+  /** Shorter title for search results and sharing (optional; defaults to `title`). */
+  seoTitle?: string;
   excerpt: string;
   category: JournalCategory;
   /** Cover illustration — same silhouettes and colour stories as the design sketches. */
@@ -65,6 +67,7 @@ export interface Article {
 export const articles: Article[] = [
   {
     slug: "phulkari-punjab-embroidery-guide",
+    seoTitle: "Phulkari Embroidery: History & Styling",
     title: "Phulkari: The Embroidery That Carries Punjab's Story",
     excerpt:
       "What phulkari actually is, how it is made, the difference between a phulkari and a bagh — and how to bring it into a suit today.",
@@ -120,6 +123,7 @@ export const articles: Article[] = [
   },
   {
     slug: "punjabi-salwar-styles-guide",
+    seoTitle: "Punjabi Salwar Styles Guide",
     title: "Patiala, Dhoti or Straight? A Guide to Punjabi Salwar Styles",
     excerpt:
       "The salwar decides how a whole suit falls and moves. Here is how the main Punjabi salwar styles differ, and which one suits which occasion.",
@@ -173,6 +177,7 @@ export const articles: Article[] = [
   },
   {
     slug: "modern-bibiyaan-old-punjabi-suit-designs",
+    seoTitle: "Old Punjabi Suit Designs We Love",
     title: "What Our Bibiyaan Wore — and Why It Still Looks Beautiful",
     excerpt:
       "Loose kameez, cuffed sleeves, borders at every edge and a dupatta worn with pride. A look at older Punjabi suit details we love bringing back.",
@@ -213,6 +218,7 @@ export const articles: Article[] = [
   },
   {
     slug: "simple-suit-elegant-styling-ideas",
+    seoTitle: "Make a Simple Suit Look Elegant",
     title: "Seven Ways to Make a Simple Suit Look Elegant",
     excerpt:
       "You don't need heavy embroidery to look dressed up. Small stitching choices — piping, a better neckline, the right length — make a plain suit feel special.",
@@ -250,6 +256,7 @@ export const articles: Article[] = [
   },
   {
     slug: "neckline-sleeve-design-ideas",
+    seoTitle: "Neckline & Sleeve Design Ideas",
     title: "Necklines, Sleeves & Cuffs: Design Ideas for Your Next Suit",
     excerpt:
       "A quick guide to popular neckline and sleeve options, what each one suits, and how to pair them.",
@@ -339,6 +346,7 @@ export const articles: Article[] = [
   },
   {
     slug: "gharara-vs-sharara-vs-palazzo",
+    seoTitle: "Gharara vs Sharara vs Palazzo",
     title: "Gharara, Sharara or Palazzo? Choosing Your Flared Look",
     excerpt:
       "They're often confused, but each one is cut differently. How to tell them apart, where each one comes from, and which suits your occasion.",
@@ -388,6 +396,7 @@ export const articles: Article[] = [
   },
   {
     slug: "plain-fabric-suit-design-ideas",
+    seoTitle: "Suit Design Ideas for Plain Fabric",
     title: "Have Plain Fabric? How to Choose the Right Suit Design",
     excerpt:
       "Plain fabric is a blank canvas. How to choose a neckline, sleeves and bottom that suit your fabric — and when to add contrast.",
@@ -435,6 +444,7 @@ export const articles: Article[] = [
   },
   {
     slug: "suit-fabric-guide-and-care",
+    seoTitle: "Suit Fabric Guide & Care Tips",
     title: "Daily Wear or Occasion? Choosing Fabric — and Caring for Stitched Suits",
     excerpt:
       "Which fabrics work for everyday comfort, which ones are made for functions, and simple care habits that keep stitched outfits looking new.",

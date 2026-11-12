@@ -58,31 +58,48 @@ export const metadata: Metadata = {
     title: `${siteConfig.name} — ${siteConfig.tagline}`,
     description: siteConfig.description,
     locale: "en_IN",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: siteConfig.name, type: "image/png" }],
   },
-  twitter: { card: "summary_large_image" },
-  alternates: { canonical: "/" },
+  twitter: { card: "summary_large_image", images: ["/og.png"] },
+  // Each page sets its own canonical URL through pageMetadata().
 };
 
 export const viewport: Viewport = {
   themeColor: "#fbf7f0",
 };
 
+// Only verified business details: no address, ratings or reviews.
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: siteConfig.name,
-  url: siteConfig.url,
-  slogan: siteConfig.tagline,
-  description: siteConfig.description,
-  email: siteConfig.email || undefined,
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: `+${siteConfig.whatsappNumber}`,
-    contactType: "customer service",
-    availableLanguage: ["English", "Punjabi", "Hindi"],
-  },
-  areaServed: "Worldwide",
-  sameAs: siteConfig.instagram ? [siteConfig.instagram] : undefined,
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteConfig.url}/#website`,
+      name: siteConfig.name,
+      url: `${siteConfig.url}/`,
+      inLanguage: "en",
+      publisher: { "@id": `${siteConfig.url}/#organization` },
+    },
+    {
+      "@type": "Organization",
+      "@id": `${siteConfig.url}/#organization`,
+      name: siteConfig.name,
+      url: `${siteConfig.url}/`,
+      logo: `${siteConfig.url}/brand/ruhaniat-logo.png`,
+      image: `${siteConfig.url}/og.png`,
+      slogan: siteConfig.tagline,
+      description: siteConfig.description,
+      email: siteConfig.email || undefined,
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: `+${siteConfig.whatsappNumber}`,
+        contactType: "customer service",
+        availableLanguage: ["English", "Punjabi", "Hindi"],
+      },
+      areaServed: "Worldwide",
+      sameAs: siteConfig.instagram ? [siteConfig.instagram] : undefined,
+    },
+  ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

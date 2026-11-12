@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { GarmentArt } from "@/components/GarmentArt";
 import { Reviews } from "@/components/Reviews";
 import { WhatsAppCta } from "@/components/sections";
 import { ButtonLink, Ornament, PageHero } from "@/components/ui";
 import { siteConfig } from "@/config/site";
 
-export const metadata: Metadata = {
-  title: "About Us",
+export const metadata: Metadata = pageMetadata({
+  title: "About Us — Our Story",
   description:
     "The story of Ruhaniat Studio — a new Punjabi ethnic wear design and custom-stitching studio bringing traditional Punjabi fashion and modern style together.",
-  alternates: { canonical: "/about" },
-};
+  path: "/about/",
+});
 
 const values = [
   {

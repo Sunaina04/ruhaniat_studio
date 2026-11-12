@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { BringYourFabric } from "@/components/BringYourFabric";
 import { GarmentArt } from "@/components/GarmentArt";
 import { HowItWorks, WhatsAppCta } from "@/components/sections";
@@ -6,12 +7,12 @@ import { ButtonLink, Ornament, PageHero, SectionHeading, WhatsAppIcon } from "@/
 import { whatsappLink } from "@/lib/whatsapp";
 import type { Silhouette, Tone } from "@/data/types";
 
-export const metadata: Metadata = {
-  title: "Custom Stitching",
+export const metadata: Metadata = pageMetadata({
+  title: "Custom Punjabi Suit Stitching",
   description:
-    "Custom-stitched Punjabi suits by Ruhaniat Studio. Choose a design, share your own reference photos, request changes, and discuss fabric, measurements and budget with us.",
-  alternates: { canonical: "/custom-stitching" },
-};
+    "Custom stitching for Punjabi suits: choose a design or share your own, request changes, and discuss fabric, measurements and budget with us on WhatsApp.",
+  path: "/custom-stitching/",
+});
 
 const options: { title: string; text: string; silhouette: Silhouette; tone: Tone }[] = [
   {
