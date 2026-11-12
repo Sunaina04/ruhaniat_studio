@@ -5,8 +5,8 @@ import { GarmentArt } from "@/components/GarmentArt";
 import { InspirationExplorer } from "@/components/InspirationExplorer";
 import { PlainFabricToSuit } from "@/components/PlainFabricToSuit";
 import { InstagramSection, JournalTeaser, LookbookTeaser } from "@/components/homeSections";
-import { HowItWorks, WhatsAppCta } from "@/components/sections";
-import { ButtonLink, Ornament, SectionHeading, WhatsAppIcon } from "@/components/ui";
+import { HowItWorks, ShippingBand, WhatsAppCta } from "@/components/sections";
+import { ButtonLink, GlobeIcon, Ornament, SectionHeading, WhatsAppIcon } from "@/components/ui";
 import { categories } from "@/data/categories";
 import { designsByCategory } from "@/data/designs";
 import { heritageElements } from "@/data/heritage";
@@ -57,6 +57,14 @@ export default function HomePage() {
               <span className="h-px w-8 bg-gold/50" />
               <span className="italic">soulfulness in every stitch</span>
             </p>
+            <Link
+              href="/shipping"
+              className="mt-5 inline-flex animate-fade-up items-center gap-2.5 border border-gold/40 bg-ivory/70 px-4 py-2.5 text-[0.66rem] uppercase tracking-[0.18em] text-burgundy transition-colors [animation-delay:1200ms] hover:border-gold"
+            >
+              <GlobeIcon className="h-4 w-4 text-gold" />
+              Worldwide Shipping Available
+              <span className="normal-case tracking-normal text-muted">· India &amp; international orders</span>
+            </Link>
           </div>
 
           <div className="relative lg:col-span-6">
@@ -253,6 +261,7 @@ export default function HomePage() {
 
       {/* 7 ── How Custom Stitching Works ──────────────────── */}
       <HowItWorks dark />
+      <ShippingBand />
 
       {/* 8 ── Journal ─────────────────────────────────────── */}
       <JournalTeaser />

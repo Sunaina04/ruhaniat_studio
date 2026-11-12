@@ -8,7 +8,7 @@ export const siteConfig = {
   tagline: "Tradition in Every Thread. Style in Every Stitch.",
   headline: "From Timeless Punjabi Classics to Today's Trends.",
   description:
-    "Punjabi suit designs and custom stitching by Ruhaniat Studio — daily wear suits, stylish salwar suits, traditional Punjabi salwar designs, gharara, sharara and palazzo suits, stitched to your measurements. Enquire on WhatsApp.",
+    "Punjabi suit designs and custom stitching by Ruhaniat Studio — daily wear suits, stylish salwar suits, traditional Punjabi salwar designs, gharara, sharara and palazzo suits, stitched to your measurements. Online orders with worldwide shipping — enquire on WhatsApp.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://ruhaniatstudio.com",
 
   /**

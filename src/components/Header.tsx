@@ -1,27 +1,28 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { categories } from "@/data/categories";
 import { mainNav, siteConfig } from "@/config/site";
+import { assetPath } from "@/lib/assets";
 import { whatsappLink } from "@/lib/whatsapp";
 import { WhatsAppIcon } from "./ui";
 import { OPEN_QUICK_ENQUIRY } from "./WhatsAppFloat";
 
 export function Logo({ light = false }: { light?: boolean }) {
+  // Phulkari star + needle wordmark. Source files live in public/brand.
   return (
-    <Link href="/" className="group flex flex-col items-start leading-none" aria-label="Ruhaniat Studio home">
-      <span
-        className={`font-serif text-[1.65rem] font-medium tracking-[0.2em] md:text-[1.85rem] ${light ? "text-ivory" : "text-burgundy-deep"}`}
-      >
-        RUHANIAT
-      </span>
-      <span className={`mt-1 flex items-center gap-2 text-[0.58rem] tracking-[0.5em] ${light ? "text-gold-soft" : "text-gold"}`}>
-        <span className={`h-px w-4 ${light ? "bg-gold-soft" : "bg-gold"}`} />
-        STUDIO
-        <span className={`h-px w-4 ${light ? "bg-gold-soft" : "bg-gold"}`} />
-      </span>
+    <Link href="/" className="group flex items-center" aria-label="Ruhaniat Studio home">
+      <Image
+        src={assetPath(light ? "/brand/ruhaniat-logo-horizontal-light.svg" : "/brand/ruhaniat-logo-horizontal.svg")}
+        alt="Ruhaniat Studio"
+        width={1029}
+        height={232}
+        priority={!light}
+        className={`w-auto transition-opacity duration-300 group-hover:opacity-85 ${light ? "h-14 md:h-16" : "h-12 md:h-[3.75rem]"}`}
+      />
     </Link>
   );
 }
@@ -66,7 +67,7 @@ export function Header() {
           scrolled ? "max-h-0 py-0 opacity-0" : "max-h-10 py-2 opacity-100"
         }`}
       >
-        PERSONALISED PUNJABI SUITS · CUSTOM STITCHED TO YOUR MEASUREMENTS
+        CUSTOM STITCHED TO YOUR MEASUREMENTS · WORLDWIDE SHIPPING AVAILABLE
       </div>
       <div
         className={`container-luxe flex h-[4.5rem] items-center justify-between transition-[height] duration-500 ${

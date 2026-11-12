@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Suspense } from "react";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { ButtonLink, Ornament, PageHero, WhatsAppIcon } from "@/components/ui";
@@ -18,7 +19,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact & Enquiry"
         title="Tell us about your outfit"
-        intro="Fill in as much or as little as you like — we will reply on WhatsApp to talk through the details."
+        intro="Ask about a design or place a custom stitching order — from India or anywhere in the world. We will reply on WhatsApp to talk through the details."
       />
       <section className="bg-ivory">
         <div className="container-luxe grid gap-12 py-16 md:py-24 lg:grid-cols-12">
@@ -46,7 +47,15 @@ export default function ContactPage() {
             <div className="mt-6 border border-line p-8">
               <p className="eyebrow">Good to Know</p>
               <ul className="mt-4 space-y-3 text-sm leading-relaxed text-muted">
-                <li>We are an online design &amp; stitching studio — enquiries are handled by WhatsApp and this form.</li>
+                <li>We are an online design &amp; stitching studio — enquiries and orders are handled by WhatsApp and this form.</li>
+                <li>
+                  We accept orders from India and other countries, with worldwide shipping. Charges and timelines are
+                  confirmed for your destination —{" "}
+                  <Link href="/shipping" className="text-burgundy underline decoration-gold/50 underline-offset-4">
+                    shipping &amp; delivery
+                  </Link>
+                  .
+                </li>
                 <li>Quote a design reference like RS-001 so we know exactly which design you mean.</li>
                 <li>Every price is quoted personally, based on your design, fabric and detailing.</li>
               </ul>

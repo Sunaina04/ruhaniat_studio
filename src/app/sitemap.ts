@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/lookbook/",
     "/journal/",
     "/custom-stitching/",
+    "/shipping/",
     "/about/",
     "/contact/",
   ].map((p) => ({

@@ -81,6 +81,7 @@ const jsonLd = {
     contactType: "customer service",
     availableLanguage: ["English", "Punjabi", "Hindi"],
   },
+  areaServed: "Worldwide",
   sameAs: siteConfig.instagram ? [siteConfig.instagram] : undefined,
 };
 

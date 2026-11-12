@@ -24,8 +24,10 @@ const MAX_FILES = 5;
 const MAX_FILE_MB = 10;
 
 type Values = {
+  enquiryType: string;
   name: string;
   phone: string;
+  location: string;
   category: string;
   occasion: string;
   designRef: string;
@@ -40,6 +42,7 @@ function buildMessage(v: Values, fileCount: number) {
   const details = [
     `Name: ${v.name}`,
     `Phone: ${v.phone}`,
+    v.location && `Delivery location: ${v.location}`,
     categoryLabel && `Outfit category: ${categoryLabel}`,
     v.occasion && `Occasion: ${v.occasion}`,
     v.designRef && `Design reference: ${v.designRef}`,
@@ -47,14 +50,20 @@ function buildMessage(v: Values, fileCount: number) {
     v.requirements && `Additional requirements: ${v.requirements}`,
     fileCount > 0 && `I have ${fileCount} reference image${fileCount > 1 ? "s" : ""} to share.`,
   ];
-  return `Hello Ruhaniat Studio, I would like to enquire about custom stitching.\n\n${details.filter(Boolean).join("\n")}`;
+  const opening =
+    v.enquiryType === "order"
+      ? "Hello Ruhaniat Studio, I would like to place a custom stitching order."
+      : "Hello Ruhaniat Studio, I would like to enquire about custom stitching.";
+  return `${opening}\n\n${details.filter(Boolean).join("\n")}`;
 }
 
 export function EnquiryForm() {
   const params = useSearchParams();
   const [values, setValues] = useState<Values>({
+    enquiryType: "enquiry",
     name: "",
     phone: "",
+    location: "",
     category: "",
     occasion: "",
     designRef: "",
@@ -73,6 +82,7 @@ export function EnquiryForm() {
     const design = ref ? getDesign(ref) : undefined;
     setValues((v) => ({
       ...v,
+      enquiryType: params.get("type") === "order" ? "order" : v.enquiryType,
       designRef: design ? `${design.ref} – ${design.name}` : (ref ?? v.designRef),
       category: design?.category ?? (cat && categories.some((c) => c.slug === cat) ? cat : v.category),
     }));
@@ -107,7 +117,7 @@ export function EnquiryForm() {
     if (!values.name.trim()) e.name = "Please enter your name.";
     const digits = values.phone.replace(/\D/g, "");
     if (!digits) e.phone = "Please enter your phone number.";
-    else if (digits.length < 10 || digits.length > 15) e.phone = "Please enter a valid phone number.";
+    else if (digits.length < 8 || digits.length > 15) e.phone = "Please enter a valid phone number, with your country code if outside India.";
     return e;
   }
 
@@ -177,6 +187,35 @@ export function EnquiryForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="grid gap-6 sm:grid-cols-2">
+      <fieldset className="sm:col-span-2">
+        <legend className={label}>I would like to</legend>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {[
+            { id: "enquiry", title: "Ask about a design", text: "Questions on designs, fabric or price" },
+            { id: "order", title: "Place a custom stitching order", text: "In India or from abroad — we ship worldwide" },
+          ].map((o) => (
+            <label
+              key={o.id}
+              className={`flex cursor-pointer items-start gap-3 border px-4 py-3.5 transition-colors ${
+                values.enquiryType === o.id ? "border-burgundy bg-blush-soft/60" : "border-line bg-[#fffdf9] hover:border-gold"
+              }`}
+            >
+              <input
+                type="radio"
+                name="enquiryType"
+                value={o.id}
+                checked={values.enquiryType === o.id}
+                onChange={set("enquiryType")}
+                className="mt-1 accent-[#6e1e2f]"
+              />
+              <span>
+                <span className="block font-serif text-lg leading-tight text-burgundy-deep">{o.title}</span>
+                <span className="mt-0.5 block text-xs text-muted">{o.text}</span>
+              </span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
       <div>
         <label htmlFor="f-name" className={label}>Name *</label>
         <input id="f-name" className="field" autoComplete="name" value={values.name} onChange={set("name")}
@@ -187,8 +226,14 @@ export function EnquiryForm() {
         <label htmlFor="f-phone" className={label}>Phone / WhatsApp *</label>
         <input id="f-phone" type="tel" inputMode="tel" className="field" autoComplete="tel" value={values.phone}
           onChange={set("phone")} aria-invalid={!!errors.phone} aria-describedby={errors.phone ? "e-phone" : undefined}
-          placeholder="+91 98xxx xxxxx" />
+          placeholder="With country code, e.g. +91 / +44 / +1" />
         {errors.phone && <p id="e-phone" className={err}>{errors.phone}</p>}
+      </div>
+      <div className="sm:col-span-2">
+        <label htmlFor="f-location" className={label}>Delivery City &amp; Country</label>
+        <input id="f-location" className="field" autoComplete="address-level2" value={values.location} onChange={set("location")}
+          placeholder="e.g. Ludhiana, India · Toronto, Canada · London, UK" />
+        <p className="mt-1.5 text-xs text-muted">We ship worldwide — shipping charges and timelines are confirmed for your destination.</p>
       </div>
       <div>
         <label htmlFor="f-category" className={label}>Outfit Category</label>

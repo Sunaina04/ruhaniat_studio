@@ -1,4 +1,4 @@
-import { ButtonLink, Ornament, SectionHeading, WhatsAppIcon } from "./ui";
+import { ButtonLink, GlobeIcon, Ornament, SectionHeading, WhatsAppIcon } from "./ui";
 import { whatsappLink } from "@/lib/whatsapp";
 
 export const howItWorksSteps = [
@@ -15,8 +15,8 @@ export const howItWorksSteps = [
     text: "We guide you through measurements, or work from a well-fitting suit you already own.",
   },
   {
-    title: "We Stitch It for You",
-    text: "Our tailor stitches your outfit to your measurements and we keep you updated along the way.",
+    title: "We Stitch & Ship It",
+    text: "Our tailor stitches your outfit to your measurements, and we ship it to you — anywhere in India or abroad.",
   },
 ];
 
@@ -72,6 +72,41 @@ export function WhatsAppCta({
           </ButtonLink>
           <ButtonLink href="/contact" variant="outline">
             Send an Enquiry Form
+          </ButtonLink>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export const SHIPPING_MESSAGE =
+  "Hello Ruhaniat Studio, I would like to place a custom stitching order. I am in (city, country) — could you tell me about shipping to my location?";
+
+/** Slim band announcing worldwide shipping — used on the homepage. */
+export function ShippingBand() {
+  return (
+    <section className="border-y border-line bg-ivory-deep">
+      <div data-reveal className="container-luxe flex flex-col items-center gap-6 py-10 text-center md:flex-row md:justify-between md:text-left">
+        <div className="flex flex-col items-center gap-4 md:flex-row">
+          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-gold/50 text-gold">
+            <GlobeIcon className="h-7 w-7" />
+          </span>
+          <div>
+            <p className="eyebrow">Online Orders · Worldwide Shipping</p>
+            <p className="mt-1 font-serif text-2xl leading-snug text-burgundy-deep md:text-3xl">
+              Order from India or anywhere in the world — we ship to you.
+            </p>
+            <p className="mt-1 text-sm text-muted">
+              Shipping charges, delivery time and availability are confirmed for your destination before you order.
+            </p>
+          </div>
+        </div>
+        <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
+          <ButtonLink href={whatsappLink(SHIPPING_MESSAGE)} external variant="whatsapp">
+            <WhatsAppIcon /> Order on WhatsApp
+          </ButtonLink>
+          <ButtonLink href="/shipping" variant="outline">
+            Shipping &amp; Delivery
           </ButtonLink>
         </div>
       </div>

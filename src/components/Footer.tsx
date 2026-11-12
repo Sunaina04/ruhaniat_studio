@@ -3,7 +3,7 @@ import { categories } from "@/data/categories";
 import { siteConfig } from "@/config/site";
 import { whatsappLink } from "@/lib/whatsapp";
 import { Logo } from "./Header";
-import { Ornament, WhatsAppIcon } from "./ui";
+import { GlobeIcon, Ornament, WhatsAppIcon } from "./ui";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -41,6 +41,7 @@ export function Footer() {
             <li><Link href="/lookbook" className="hover:text-gold-soft">Lookbook</Link></li>
             <li><Link href="/journal" className="hover:text-gold-soft">Ruhaniat Journal</Link></li>
             <li><Link href="/about" className="hover:text-gold-soft">About Us</Link></li>
+            <li><Link href="/shipping" className="hover:text-gold-soft">Shipping &amp; Delivery</Link></li>
             <li><Link href="/contact" className="hover:text-gold-soft">Contact &amp; Enquiry</Link></li>
           </ul>
         </div>
@@ -70,7 +71,10 @@ export function Footer() {
               Instagram
             </a>
           )}
-          <p className="mt-4 text-xs leading-relaxed text-ivory/60">Enquiries by WhatsApp or our enquiry form.</p>
+          <p className="mt-4 text-xs leading-relaxed text-ivory/60">Enquiries and orders by WhatsApp or our enquiry form.</p>
+          <Link href="/shipping" className="mt-5 inline-flex items-center gap-2 border border-gold-soft/40 px-3 py-2 text-[0.62rem] uppercase tracking-[0.18em] text-gold-soft hover:border-gold-soft">
+            <GlobeIcon className="h-3.5 w-3.5" /> Worldwide Shipping Available
+          </Link>
         </div>
       </div>
       <div className="border-t border-ivory/10">
