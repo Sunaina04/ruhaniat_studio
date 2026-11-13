@@ -9,7 +9,7 @@ export const siteConfig = {
   headline: "From Timeless Punjabi Classics to Today's Trends.",
   description:
     "Punjabi suit designs and custom stitching — daily wear, salwar, gharara, sharara and palazzo suits stitched to your measurements. Worldwide shipping.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://ruhaniatstudio.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
 
   /**
    * WhatsApp number in international format, digits only (no +, spaces or dashes).
