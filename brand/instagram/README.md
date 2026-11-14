@@ -48,10 +48,10 @@ Switch to a **Professional account → Business**. Category: **Clothing (Brand)*
 
 ## 4. Links (mobile app only: Edit profile → Links → Add external link)
 
-1. **Website**: `https://sunaina04.github.io/ruhaniat_studio/` (the first link is the one shown on your profile)
+1. **Website**: `https://ruhaniatstudio.vercel.app/` (the first link is the one shown on your profile)
 2. **Order on WhatsApp**: `https://wa.me/918284948195`
-3. **Shipping & Delivery**: `https://sunaina04.github.io/ruhaniat_studio/shipping/`
-4. **Lookbook**: `https://sunaina04.github.io/ruhaniat_studio/lookbook/`
+3. **Shipping & Delivery**: `https://ruhaniatstudio.vercel.app/shipping/`
+4. **Lookbook**: `https://ruhaniatstudio.vercel.app/lookbook/`
 
 ## 5. Contact options (Edit profile → Contact options / Business information)
 

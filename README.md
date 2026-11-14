@@ -14,11 +14,12 @@ npm run build                # static site in ./out
 
 Don't run `npm run build` while `npm run dev` is running. Both use the `.next` folder, and the dev server will start throwing "Cannot find module" errors. If that happens, stop it and run `rm -rf .next && npm run dev`.
 
-## Going live (GitHub Pages)
+## Going live
 
-Every push to `main` deploys the site with `.github/workflows/deploy.yml`. The live address is **https://sunaina04.github.io/ruhaniat_studio/**. You can see each deploy's progress in the repository's **Actions** tab.
+- **Vercel (main site):** https://ruhaniatstudio.vercel.app. Vercel builds and deploys every push to `main` automatically. The site address is detected from Vercel; set `NEXT_PUBLIC_SITE_URL` in Vercel if you add a custom domain.
+- **GitHub Pages (copy):** `.github/workflows/deploy.yml` also publishes the site under `/ruhaniat_studio`. Its canonical URLs point to the Vercel site, so search engines treat Vercel as the main one.
 
-The site is exported as static files (`output: "export"` in `next.config.ts`). The workflow sets the `/ruhaniat_studio` base path. Your WhatsApp number and email are set in `src/config/site.ts`.
+The site is exported as static files (`output: "export"` in `next.config.ts`). Your WhatsApp number and email are set in `src/config/site.ts`.
 
 ## Everyday editing
 
